@@ -1,3 +1,9 @@
+"""
+**********Training and sample programs are heavily based on tensorflow-char-rnn by crazydonkey200**********
+Link: https://github.com/crazydonkey200/tensorflow-char-rnn
+"""
+
+
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 

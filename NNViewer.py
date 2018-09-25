@@ -1,3 +1,29 @@
+# William Rodriguez
+"""
+**********Training and sample programs are heavily based on tensorflow-char-rnn by crazydonkey200**********
+Link: https://github.com/crazydonkey200/tensorflow-char-rnn
+
+Description:
+    A program intended to help organize the construction of projects that require numerous
+    neural networks. This is done by assigning each neural network to a 'Project' which saves all of the variables and file paths
+    necessary to recreate it. This means that starting, stopping, saving, loading, and cloning your neural networks is much easier.
+
+    HOWEVER: this program was only intended to be ran on my setup for a very long time, and therefore may require a lot of work for it
+    to be ran on different setups.
+
+    My Setup:
+
+        A NVidia graphics card (GTX 1080 ti)
+        An Intel CPU (8700k)
+        tensorflow-gpu installed as the default version of tensorflow
+        A Python3 environment named cpu_env placed in this project's directory
+                This environment has the tensorflow version for CPU
+                I use the GPU version to train the AI and the CPU version to generate samples while it's training
+
+        **Although the particular hardware should not effect whether or not this program runs, the brands and software setup
+        will definitely effect how everything works**
+"""
+
 import sys
 import functools
 from PyQt5.QtWidgets import *
@@ -478,6 +504,14 @@ class NNViewer(QWidget):
         if self.run_thread is not None and self.run_thread.isAlive():
             dir_path = os.path.dirname(os.path.realpath(__file__))
             python_version = os.path.join(dir_path, 'cpu_env/bin/python3')
+            if not os.path.exists(python_version):
+                """
+                This addition was pretty last minute since I was only expecting to use this program myself.
+                The entire process of generating and training AI on the GPU and CPU will have to be changed
+                if this program is intended to run on varied setups.
+                """
+                print("Cannot generate a sample on the CPU while a NN is training on the GPU")
+                return
 
         fullPath = os.path.join(self.settings['Output Directory'], self.settings['Project Name'])
 
